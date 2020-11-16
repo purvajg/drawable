@@ -1,9 +1,11 @@
 1) Adding project to git.
-- $ git init -b main
+- $ git init
 
 2) Linking the project with github
 - Create a new repository on GitHub. To avoid errors, do not initialize the new repository with README,
 license, or gitignore files. You can add these files after your project has been pushed to GitHub.
+- $ git checkout -b main
+creating a branch main as git would first create master branch by git init
 - $ git add
 - $ git commit -m "bla bla"
 - At the top of your GitHub repository's Quick Setup page, click  to copy the remote repository URL.

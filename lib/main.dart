@@ -1,6 +1,8 @@
 
 import 'package:drawable/home/ui/homeScreen.dart';
+import 'package:drawable/navigators/nameScreenRoute.dart';
 import 'package:drawable/responsive/colorPallete.dart';
+import 'package:drawable/responsive/navigatorConfig.dart';
 import 'package:drawable/responsive/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
                     ),
                     title: 'Drawable',
                     routes: {
-                      //NavigatorConfig.addressList : (context){return AddressListRoute.main(context);},
+                      NavigatorConfig.nameScreen : (context){return NameScreenRoute.main(context);},
                     },
                     debugShowCheckedModeBanner: false,
                     home: HomeScreen(),
