@@ -2,14 +2,12 @@ import 'package:drawable/widgets/customText.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextFieldDialogBox {
+class CustomOkDialogBox {
   final String text;
-  final ValueChanged<String> onChanged;
   final String buttonText;
   final VoidCallback buttonOnPressed;
 
-  CustomTextFieldDialogBox({@required this.text,@required this.onChanged,
-    @required this.buttonText,@required this.buttonOnPressed});
+  CustomOkDialogBox({@required this.text,@required this.buttonText,@required this.buttonOnPressed});
 
   dialog(BuildContext context) async{
     await showDialog(
@@ -18,9 +16,6 @@ class CustomTextFieldDialogBox {
         builder: (BuildContext context) {
           return new AlertDialog(
             title: CustomText(text: text,),
-            content: TextField(
-              onChanged: onChanged,
-            ),
             actions: <Widget>[
               FlatButton(
                 child:CustomText(text: buttonText,),
