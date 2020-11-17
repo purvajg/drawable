@@ -6,6 +6,7 @@ class TextConfig{
   static String ok = 'OK';
   static String blankString = '';
   static String shareThisCode = 'Share this code to invite others : ';
+  static String shareTheCode = 'Share this code to : ';
   static String enterTheCode = 'Amazing ! Now enter the code to join : ';
   static String id = 'id';
 

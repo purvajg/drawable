@@ -1,3 +1,4 @@
+import 'package:drawable/responsive/textConfig.dart';
 import 'package:drawable/responsive/widgetConfig.dart';
 import 'package:drawable/widgets/customAppBar.dart';
 import 'package:drawable/widgets/customText.dart';
@@ -24,20 +25,43 @@ class _WhiteBoardUIState extends State<WhiteBoardUI> {
   void initState() {
     controller = new DrawingController(enableChunk: true);
     sketchStreamController = new SketchStreamController();
-    controller.onChange().listen((draw) {
-      /// push to firebase
-      print("drawing");
-    });
+    //    controller.onChange().listen((draw) {
+    //      /// push to firebase
+    //      print("drawing");
+    //    });
+
+    /// for viewer:
+    /// use streamBuilder to get chunks from firebase
+//    getChunksFromStreamBuilder();
+
+
+    /// for drawer:
     controller.onChunk().listen((drawChunk) {
       sketchStreamController.addChunk(drawChunk);
       /// for drawer : push the chunk to firebase
       print("onChunk");
 
-      /// for vieweer : pull the chunk from firebase
     });
     // TODO: implement initState
     super.initState();
   }
+
+
+//  getChunksFromStreamBuilder(){
+//    /// for viewer:
+//    /// use streamBuilder to get chunks from firebase
+//    StreamBuilder(
+//      stream: getDrawingData(),
+//      builder: (context, snapshot){
+//        if(snapshot.hasData){
+//          DrawChunk drawChunkFromFirebase = snapshot.data;
+//          sketchStreamController.addChunk(drawChunkFromFirebase);
+//
+//          return Container();
+//        }return Container();
+//      },
+//    );
+//  }
 
 
   @override
@@ -46,7 +70,7 @@ class _WhiteBoardUIState extends State<WhiteBoardUI> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(WidgetConfig.appBarSeventy),
         child: CustomAppBar(
-          title: CustomText(text: widget.id.toUpperCase(),),
+          title: CustomText(text: TextConfig.shareTheCode + widget.id.toUpperCase(),),
         ),
       ),
       body: Center(
