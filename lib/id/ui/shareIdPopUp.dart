@@ -1,4 +1,5 @@
 import 'package:drawable/responsive/colorPallete.dart';
+import 'package:drawable/responsive/navigatorConfig.dart';
 import 'package:drawable/responsive/textConfig.dart';
 import 'package:drawable/widgets/customRichTextOkDialogBox.dart';
 import 'package:drawable/widgets/customText.dart';
@@ -18,9 +19,11 @@ class ShareIdPopUp{
         ],
         buttonText: TextConfig.ok,
         buttonOnPressed: (){
-            /// send the user to whiteBoard screen:
-            /// pop is a placeholder
-            Navigator.of(context).pop();
+          /// send the user to whiteBoard screen:
+          /// pop is a placeholder
+          Map<String,dynamic> navigatorMap = new Map();
+          navigatorMap[TextConfig.id] = id;
+          Navigator.pushNamed(context, NavigatorConfig.whiteBoardUI,arguments: navigatorMap);
           }
     ).dialog(context);
   }

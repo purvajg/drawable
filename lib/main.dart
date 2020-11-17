@@ -1,6 +1,7 @@
 
 import 'package:drawable/home/ui/homeScreen.dart';
 import 'package:drawable/navigators/nameScreenRoute.dart';
+import 'package:drawable/navigators/whiteBoardUIRoute.dart';
 import 'package:drawable/responsive/colorPallete.dart';
 import 'package:drawable/responsive/navigatorConfig.dart';
 import 'package:drawable/responsive/sizeConfig.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
                     title: 'Drawable',
                     routes: {
                       NavigatorConfig.nameScreen : (context){return NameScreenRoute.main(context);},
+                      NavigatorConfig.whiteBoardUI : (context){return WhiteBoardUIRoute.main(context);},
                     },
                     debugShowCheckedModeBanner: false,
                     home: HomeScreen(),
