@@ -1,5 +1,6 @@
+import 'package:drawable/id/ui/enterIdPopUp.dart';
 import 'package:drawable/id/ui/shareIdPopUp.dart';
-import 'package:drawable/name/ui/setName.dart';
+import 'package:drawable/name/ui/setNamePopUp.dart';
 import 'package:drawable/home/ui/homeScreenBottom.dart';
 import 'package:drawable/responsive/imageConfig.dart';
 import 'package:drawable/responsive/textConfig.dart';
@@ -20,6 +21,7 @@ class HomeScreen extends StatelessWidget {
       ),
       bottom: HomeScreenBottom(
         startOnPressed: () async{
+          /// set name:
           await SetNamePopUp().main(context: context);
           //Navigator.pushNamed(context, NavigatorConfig.nameScreen);
           /// generate a random id for new room
@@ -28,7 +30,11 @@ class HomeScreen extends StatelessWidget {
           await ShareIdPopUp(id: '12345').main(context: context);
         },
         joinOnPressed: () async{
+          /// set name:
           await SetNamePopUp().main(context: context);
+
+          /// ask to enter the code:
+          await EnterIdPopUp().main(context: context);
         },
       ),
     );
