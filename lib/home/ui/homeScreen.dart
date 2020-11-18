@@ -1,3 +1,4 @@
+import 'package:drawable/id/data/generateSessionId.dart';
 import 'package:drawable/id/ui/enterIdPopUp.dart';
 import 'package:drawable/id/ui/shareIdPopUp.dart';
 import 'package:drawable/name/ui/setNamePopUp.dart';
@@ -23,11 +24,12 @@ class HomeScreen extends StatelessWidget {
         startOnPressed: () async{
           /// set name:
           await SetNamePopUp().main(context: context);
-          //Navigator.pushNamed(context, NavigatorConfig.nameScreen);
+
           /// generate a random id for new room
+          String sessionId = await GenerateSessionId().main();
 
           /// pass that id to ShareIdPopUp which shows a dialog box
-          await ShareIdPopUp(id: '12345').main(context: context);
+          await ShareIdPopUp(id: sessionId).main(context: context);
         },
         joinOnPressed: () async{
           /// set name:

@@ -12,4 +12,16 @@ class TextConfig{
   static String memberList = 'memberList';
   static String membersList = 'Members List : ';
 
+
+  /// collection names:
+  static String sessionsPathName = 'sessions';
+
+  /// sessions:
+  static String chunk = 'chunk';
+  static String creator = 'creator';
+  static String drawer = 'drawer';
+  static String members = 'members';
+  static String isActive = 'isActive';
+
+
 }
