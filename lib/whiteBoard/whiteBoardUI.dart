@@ -74,6 +74,9 @@ class _WhiteBoardUIState extends State<WhiteBoardUI> {
         preferredSize: Size.fromHeight(WidgetConfig.appBarSeventy),
         child: CustomAppBar(
           title: CustomText(text: TextConfig.shareTheCode + widget.id.toUpperCase(),),
+          onPressed: (){
+            Navigator.pop(context);
+          },
           actions: [
             CustomIconButton(
               iconNameInImageFolder: IconConfig.settings,

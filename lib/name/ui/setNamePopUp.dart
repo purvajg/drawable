@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 class SetNamePopUp{
 
   String name;
+  final ValueChanged<String> setName;
+
+  SetNamePopUp({this.setName});
 
   main({@required BuildContext context}) async{
     return await CustomTextFieldDialogBox(
@@ -12,10 +15,14 @@ class SetNamePopUp{
         buttonText: TextConfig.ok,
         buttonOnPressed: (){
           if(name != TextConfig.blankString && name != null){
-            /// push the name to database
+
+
+            /// create a token id for user
 
             /// pop the dialog box:
-            Navigator.of(context).pop();
+            print("name in setName : $name");
+            setName(name);
+            Navigator.of(context).pop(name);
           }
         },
         onChanged:(value){

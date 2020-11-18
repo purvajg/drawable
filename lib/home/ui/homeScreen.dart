@@ -1,3 +1,5 @@
+import 'package:drawable/firebase/sessions.dart';
+import 'package:drawable/id/data/createTokenId.dart';
 import 'package:drawable/id/data/generateSessionId.dart';
 import 'package:drawable/id/ui/enterIdPopUp.dart';
 import 'package:drawable/id/ui/shareIdPopUp.dart';
@@ -23,10 +25,25 @@ class HomeScreen extends StatelessWidget {
       bottom: HomeScreenBottom(
         startOnPressed: () async{
           /// set name:
-          await SetNamePopUp().main(context: context);
+          String name;
+          await SetNamePopUp(
+            setName:(nameTemp){
+              name = nameTemp;
+            }
+          ).main(context: context);
+          print("name in start : $name");
 
           /// generate a random id for new room
           String sessionId = await GenerateSessionId().main();
+
+          /// create a token for the name
+          String tokenId = await CreateTokenId().setTokenId(sessionId: sessionId);
+
+          /// push the name to database
+          Sessions().setName(sessionId: sessionId, name: name, tokenId: tokenId);
+
+          /// set the user as the creator
+          Sessions().setCreator(sessionId: sessionId, tokenId: tokenId);
 
           /// pass that id to ShareIdPopUp which shows a dialog box
           await ShareIdPopUp(id: sessionId).main(context: context);
