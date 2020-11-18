@@ -1,6 +1,9 @@
+import 'package:drawable/responsive/iconConfig.dart';
+import 'package:drawable/responsive/navigatorConfig.dart';
 import 'package:drawable/responsive/textConfig.dart';
 import 'package:drawable/responsive/widgetConfig.dart';
 import 'package:drawable/widgets/customAppBar.dart';
+import 'package:drawable/widgets/customIconButton.dart';
 import 'package:drawable/widgets/customText.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +74,22 @@ class _WhiteBoardUIState extends State<WhiteBoardUI> {
         preferredSize: Size.fromHeight(WidgetConfig.appBarSeventy),
         child: CustomAppBar(
           title: CustomText(text: TextConfig.shareTheCode + widget.id.toUpperCase(),),
+          actions: [
+            CustomIconButton(
+              iconNameInImageFolder: IconConfig.settings,
+              onPressed: (){
+                final Map<String,bool> memberList = {
+                  'aba': false,
+                  'taba': false,
+                  'baba': true,
+                  'shaba': false,
+                };
+                Map<String,dynamic> navigatorMap = new Map();
+                navigatorMap[TextConfig.memberList] = memberList;
+                Navigator.pushNamed(context, NavigatorConfig.memberListUI,arguments: navigatorMap );
+              },
+            ),
+          ],
         ),
       ),
       body: Center(

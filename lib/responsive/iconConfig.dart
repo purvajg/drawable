@@ -61,4 +61,7 @@ class IconConfig{
   static String free = 'free';
   static String driving = 'driving';
   static String refresh = 'refresh';
+
+  static String settings = 'settings';
+  static String pencil = 'pencil';
 }

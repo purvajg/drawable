@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "914461035760",
+    "firebase_url": "https://drawable-bbbe6.firebaseio.com",
+    "project_id": "drawable-bbbe6",
+    "storage_bucket": "drawable-bbbe6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914461035760:android:f09e09ca1986d6c0b54635",
+        "android_client_info": {
+          "package_name": "com.simpleapps.drawable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "914461035760-ghpemejcgv3hsb6j3dfh9r5lc72ub66o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.simpleapps.drawable",
+            "certificate_hash": "6648a5d0dd70ef510fe1a99f5ffd39d5b00bffce"
+          }
+        },
+        {
+          "client_id": "914461035760-rit5gg9jtbd3s1c2fcepsdm6ctbpbdep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa3cGSQlAKMNY9YowCoWnX-CdRX-7YMKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "914461035760-rit5gg9jtbd3s1c2fcepsdm6ctbpbdep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
