@@ -11,6 +11,7 @@ class TextConfig{
   static String id = 'id';
   static String memberList = 'memberList';
   static String membersList = 'Members List : ';
+  static String sessionId = 'sessionId';
 
 
   /// collection names:

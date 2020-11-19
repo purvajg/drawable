@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 class MemberListUI extends StatelessWidget {
   final Map<String,bool> memberList;
 
-  MemberListUI({this.memberList});
+  MemberListUI({@required this.memberList});
 
 
   @override

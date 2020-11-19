@@ -1,3 +1,4 @@
+import 'package:drawable/members/getMemberDrawerMap.dart';
 import 'package:drawable/responsive/iconConfig.dart';
 import 'package:drawable/responsive/navigatorConfig.dart';
 import 'package:drawable/responsive/textConfig.dart';
@@ -11,9 +12,9 @@ import 'package:whiteboardkit/sketch_stream_controller.dart';
 import 'package:whiteboardkit/whiteboardkit.dart';
 
 class WhiteBoardUI extends StatefulWidget {
-  final String id;
+  final String sessionId;
 
-  WhiteBoardUI({this.id});
+  WhiteBoardUI({this.sessionId});
 
   @override
   _WhiteBoardUIState createState() => _WhiteBoardUIState();
@@ -73,23 +74,23 @@ class _WhiteBoardUIState extends State<WhiteBoardUI> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(WidgetConfig.appBarSeventy),
         child: CustomAppBar(
-          title: CustomText(text: TextConfig.shareTheCode + widget.id.toUpperCase(),),
+          title: CustomText(text: TextConfig.shareTheCode + widget.sessionId.toUpperCase(),),
           onPressed: (){
             Navigator.pop(context);
           },
           actions: [
             CustomIconButton(
               iconNameInImageFolder: IconConfig.settings,
-              onPressed: (){
-                final Map<String,bool> memberList = {
-                  'aba': false,
-                  'taba': false,
-                  'baba': true,
-                  'shaba': false,
-                };
+              onPressed: () {
+//                final Map<String,bool> memberList = {
+//                  'aba': false,
+//                  'taba': false,
+//                  'baba': true,
+//                  'shaba': false,
+//                };
                 Map<String,dynamic> navigatorMap = new Map();
-                navigatorMap[TextConfig.memberList] = memberList;
-                Navigator.pushNamed(context, NavigatorConfig.memberListUI,arguments: navigatorMap );
+                navigatorMap[TextConfig.sessionId] = widget.sessionId;
+                Navigator.pushNamed(context, NavigatorConfig.memberListData,arguments: navigatorMap );
               },
             ),
           ],

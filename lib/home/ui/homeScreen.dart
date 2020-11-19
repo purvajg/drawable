@@ -24,6 +24,8 @@ class HomeScreen extends StatelessWidget {
       ),
       bottom: HomeScreenBottom(
         startOnPressed: () async{
+
+          /// ################## data: ###########################################
           /// set name:
           String name;
           await SetNamePopUp(
@@ -31,7 +33,6 @@ class HomeScreen extends StatelessWidget {
               name = nameTemp;
             }
           ).main(context: context);
-          print("name in start : $name");
 
           /// generate a random id for new room
           String sessionId = await GenerateSessionId().main();
@@ -42,8 +43,13 @@ class HomeScreen extends StatelessWidget {
           /// push the name to database
           Sessions().setName(sessionId: sessionId, name: name, tokenId: tokenId);
 
+          /// set the creator as the initial drawer
+          Sessions().setDrawer(sessionId: sessionId, tokenId: tokenId);
+
           /// set the user as the creator
           Sessions().setCreator(sessionId: sessionId, tokenId: tokenId);
+
+          /// ################## data ends: ####################################
 
           /// pass that id to ShareIdPopUp which shows a dialog box
           await ShareIdPopUp(id: sessionId).main(context: context);

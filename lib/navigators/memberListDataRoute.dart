@@ -1,15 +1,16 @@
+import 'package:drawable/members/memberListData.dart';
 import 'package:drawable/members/memberListUI.dart';
 import 'package:drawable/responsive/textConfig.dart';
 import 'package:flutter/cupertino.dart';
 
-class MemberListUIRoute{
+class MemberListDataRoute{
 
   static Widget main(BuildContext context){
 
     Map<String,dynamic> map = ModalRoute.of(context).settings.arguments;
-    final Map<String,bool> memberList = map[TextConfig.memberList];
+    final String sessionId = map[TextConfig.sessionId];
 
-    return MemberListUI(memberList: memberList,);
+    return MemberListData(sessionId: sessionId,);
   }
 
 }

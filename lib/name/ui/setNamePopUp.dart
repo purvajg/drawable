@@ -16,9 +16,6 @@ class SetNamePopUp{
         buttonOnPressed: (){
           if(name != TextConfig.blankString && name != null){
 
-
-            /// create a token id for user
-
             /// pop the dialog box:
             print("name in setName : $name");
             setName(name);

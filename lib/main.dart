@@ -1,5 +1,6 @@
 
 import 'package:drawable/home/ui/homeScreen.dart';
+import 'package:drawable/navigators/memberListDataRoute.dart';
 import 'package:drawable/navigators/memberListUIRoute.dart';
 import 'package:drawable/navigators/whiteBoardUIRoute.dart';
 import 'package:drawable/responsive/colorPallete.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
                     routes: {
                       NavigatorConfig.whiteBoardUI : (context){return WhiteBoardUIRoute.main(context);},
                       NavigatorConfig.memberListUI : (context){return MemberListUIRoute.main(context);},
+                      NavigatorConfig.memberListData : (context){return MemberListDataRoute.main(context);},
                     },
                     debugShowCheckedModeBanner: false,
                     home: HomeScreen(),
