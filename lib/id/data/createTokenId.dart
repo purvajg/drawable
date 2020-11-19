@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 class CreateTokenId{
 
   Future<int> geNumberOfMembers({@required String sessionId}) async{
-    Map<String, String> nameTokenMap = await Sessions().getMembersMap(sessionId: sessionId);
+    Map<String, dynamic> nameTokenMap = await Sessions().getMembersMap(sessionId: sessionId);
     /// if the user is the creator, then there wont be any memberlist
     /// and the map of members would be null
     if(nameTokenMap == null) return 1;

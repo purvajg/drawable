@@ -27,7 +27,7 @@ class WhiteBoardData extends StatelessWidget {
 
           if(drawerTokenId == tokenId) isDrawer = true;
 
-          List<Map<String, dynamic>> drawingChunkList = map[TextConfig.chunk];
+          List<dynamic> drawingChunkList = map[TextConfig.chunk];
 //          List<DrawChunk> drawingChunk = drawingChunkJson
 
           return FutureBuilder(
@@ -39,7 +39,7 @@ class WhiteBoardData extends StatelessWidget {
                 print("newIndex : ${newDrawChunkSnapshot.data}");
                 int newIndex = newDrawChunkSnapshot.data;
 
-                Map<String, dynamic> drawChunkToJsonMap = drawingChunkList[newIndex];
+                Map<String, dynamic> drawChunkToJsonMap = drawingChunkList[newIndex-1];
 
                 DrawChunk newDrawChunk = DrawChunk.fromJson(drawChunkToJsonMap);
 

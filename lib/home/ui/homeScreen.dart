@@ -56,10 +56,16 @@ class HomeScreen extends StatelessWidget {
         },
         joinOnPressed: () async{
           /// set name:
-          await SetNamePopUp().main(context: context);
+          String name;
+          await SetNamePopUp(
+              setName:(nameTemp){
+                name = nameTemp;
+              }
+          ).main(context: context);
+
 
           /// ask to enter the code:
-          await EnterIdPopUp().main(context: context);
+          await EnterIdPopUp(name: name).main(context: context);
         },
       ),
     );

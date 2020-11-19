@@ -7,10 +7,13 @@ import 'package:whiteboardkit/draw_chunk.dart';
 
 class Sessions{
 
+
+  /// ######### basic path ##########################################################
   CollectionReference path(){
     CollectionReference cr = CollectionPaths.sessionsCollectionPath;
     return cr;
   }
+
 
   /// ######### push ##########################################################
   Future<String> generateId() async{
@@ -93,17 +96,24 @@ class Sessions{
   }
 
 
-  Future<List<Map<String, dynamic>>> getDrawChunkList({@required String sessionId}) async{
+  Future<List<dynamic>> getDrawChunkList({@required String sessionId}) async{
     CollectionReference cr = path();
     DocumentSnapshot dc = await cr.document(sessionId).get();
-    List<Map<String, dynamic>> drawChunkList = dc[TextConfig.chunk];
+    List<dynamic> drawChunkList = dc[TextConfig.chunk];
     return drawChunkList;
   }
 
   Future<int> getDrawChunkListLength({@required String sessionId}) async{
-    List<Map<String, dynamic>> drawChunkList = await getDrawChunkList(sessionId: sessionId);
+    List<dynamic> drawChunkList = await getDrawChunkList(sessionId: sessionId);
     int length = drawChunkList.length;
     return length;
+  }
+
+
+  Future<QuerySnapshot> getQuerySnapshotListOfSessionIds() async{
+    CollectionReference cr = path();
+    QuerySnapshot qs = await cr.getDocuments();
+    return qs;
   }
 
 

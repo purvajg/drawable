@@ -13,6 +13,7 @@ class TextConfig{
   static String sessionId = 'sessionId';
   static String isDrawer = 'isDrawer';
   static String tokenId = 'tokenId';
+  static String invalidCode = 'Wrong session code entered ! Try again ';
 
 
   /// collection names:
