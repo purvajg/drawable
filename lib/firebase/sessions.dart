@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drawable/responsive/collectionPaths.dart';
 import 'package:drawable/responsive/textConfig.dart';
 import 'package:flutter/foundation.dart';
+import 'package:whiteboardkit/draw_chunk.dart';
 
 class Sessions{
 
@@ -47,6 +48,22 @@ class Sessions{
     cr.document(sessionId).setData(drawerMap, merge: true);
   }
 
+
+  setDrawingData({@required String sessionId}){
+    CollectionReference cr = path();
+    List<Map<String, dynamic>> drawingChunk = new List();
+
+
+    cr.document(sessionId).setData({TextConfig.chunk : drawingChunk}, merge: true);
+  }
+
+  void pushDrawingData({@required DrawChunk chunk, @required String sessionId}){
+    //setDrawingData(sessionId: sessionId);
+    updateDrawingData(chunk: chunk, sessionId: sessionId);
+  }
+
+
+
   /// ######### retrive ##########################################################
   Future<Map<String, dynamic>> getMembersMap({@required String sessionId}) async{
     CollectionReference cr = path();
@@ -76,6 +93,20 @@ class Sessions{
   }
 
 
+  Future<List<Map<String, dynamic>>> getDrawChunkList({@required String sessionId}) async{
+    CollectionReference cr = path();
+    DocumentSnapshot dc = await cr.document(sessionId).get();
+    List<Map<String, dynamic>> drawChunkList = dc[TextConfig.chunk];
+    return drawChunkList;
+  }
+
+  Future<int> getDrawChunkListLength({@required String sessionId}) async{
+    List<Map<String, dynamic>> drawChunkList = await getDrawChunkList(sessionId: sessionId);
+    int length = drawChunkList.length;
+    return length;
+  }
+
+
   /// ######### update #########################################################
 
   void updateDrawer({@required String sessionId,@required String tokenId }){
@@ -83,5 +114,14 @@ class Sessions{
     Map<String, String> drawerMap = new HashMap();
     drawerMap[TextConfig.drawer] = tokenId;
     cr.document(sessionId).updateData(drawerMap);
+  }
+
+  updateDrawingData({@required DrawChunk chunk, @required String sessionId}){
+    CollectionReference cr = path();
+
+    List<Map<String, dynamic>> drawingChunk = new List();
+    drawingChunk.add(chunk.toJson());
+
+    cr.document(sessionId).updateData({TextConfig.chunk: FieldValue.arrayUnion(drawingChunk),});
   }
 }

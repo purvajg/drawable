@@ -8,8 +8,9 @@ class WhiteBoardUIRoute{
 
     Map<String,dynamic> map = ModalRoute.of(context).settings.arguments;
     final String id = map[TextConfig.id];
+    final bool isDrawer = map[TextConfig.isDrawer];
 
-    return WhiteBoardUI(sessionId: id,);
+    return WhiteBoardUI(sessionId: id, isDrawer: isDrawer,);
   }
 
 }

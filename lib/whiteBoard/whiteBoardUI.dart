@@ -1,4 +1,4 @@
-import 'package:drawable/members/getMemberDrawerMap.dart';
+import 'package:drawable/firebase/sessions.dart';
 import 'package:drawable/responsive/iconConfig.dart';
 import 'package:drawable/responsive/navigatorConfig.dart';
 import 'package:drawable/responsive/textConfig.dart';
@@ -13,8 +13,10 @@ import 'package:whiteboardkit/whiteboardkit.dart';
 
 class WhiteBoardUI extends StatefulWidget {
   final String sessionId;
+  final bool isDrawer;
+  final DrawChunk drawingChunkStream;
 
-  WhiteBoardUI({this.sessionId});
+  WhiteBoardUI({@required this.sessionId, @required this.isDrawer, this.drawingChunkStream});
 
   @override
   _WhiteBoardUIState createState() => _WhiteBoardUIState();
@@ -29,43 +31,25 @@ class _WhiteBoardUIState extends State<WhiteBoardUI> {
   void initState() {
     controller = new DrawingController(enableChunk: true);
     sketchStreamController = new SketchStreamController();
-    //    controller.onChange().listen((draw) {
-    //      /// push to firebase
-    //      print("drawing");
-    //    });
-
-    /// for viewer:
-    /// use streamBuilder to get chunks from firebase
-//    getChunksFromStreamBuilder();
 
 
     /// for drawer:
-    controller.onChunk().listen((drawChunk) {
-      sketchStreamController.addChunk(drawChunk);
-      /// for drawer : push the chunk to firebase
-      print("onChunk");
+    if(widget.isDrawer == true){
+      controller.onChunk().listen((drawChunk) {
+        /// for drawer : push the chunk to firebase
+        Sessions().pushDrawingData(chunk: drawChunk, sessionId: widget.sessionId);
+      });
+    }
 
-    });
-    // TODO: implement initState
+    /// for viewer
+    /// use data provided by streambuilder from whiteBoardData class:
+    else{
+    sketchStreamController.addChunk(widget.drawingChunkStream);
+    }
+
     super.initState();
   }
 
-
-//  getChunksFromStreamBuilder(){
-//    /// for viewer:
-//    /// use streamBuilder to get chunks from firebase
-//    StreamBuilder(
-//      stream: getDrawingData(),
-//      builder: (context, snapshot){
-//        if(snapshot.hasData){
-//          DrawChunk drawChunkFromFirebase = snapshot.data;
-//          sketchStreamController.addChunk(drawChunkFromFirebase);
-//
-//          return Container();
-//        }return Container();
-//      },
-//    );
-//  }
 
 
   @override
@@ -82,12 +66,6 @@ class _WhiteBoardUIState extends State<WhiteBoardUI> {
             CustomIconButton(
               iconNameInImageFolder: IconConfig.settings,
               onPressed: () {
-//                final Map<String,bool> memberList = {
-//                  'aba': false,
-//                  'taba': false,
-//                  'baba': true,
-//                  'shaba': false,
-//                };
                 Map<String,dynamic> navigatorMap = new Map();
                 navigatorMap[TextConfig.sessionId] = widget.sessionId;
                 Navigator.pushNamed(context, NavigatorConfig.memberListData,arguments: navigatorMap );
@@ -102,7 +80,7 @@ class _WhiteBoardUIState extends State<WhiteBoardUI> {
           children: [
             Expanded(
               child: Whiteboard(
-              controller: controller,
+              controller: widget.isDrawer == true ? controller : sketchStreamController,
               ),
             )
           ],

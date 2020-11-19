@@ -31,8 +31,6 @@ class MemberListUI extends StatelessWidget {
         itemBuilder: (context, index){
           String name = memberList.keys.elementAt(index);/// iterating through map
           bool isDrawer = memberList[name];
-          print("memberlist : $memberList");
-          print("isDrawer : $isDrawer");
           return ListTile(
             title: CustomText(text: name,),
             trailing: Visibility(

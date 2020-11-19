@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
           /// ################## data ends: ####################################
 
           /// pass that id to ShareIdPopUp which shows a dialog box
-          await ShareIdPopUp(id: sessionId).main(context: context);
+          await ShareIdPopUp(sessionId: sessionId).main(context: context);
         },
         joinOnPressed: () async{
           /// set name:

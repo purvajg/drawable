@@ -7,22 +7,23 @@ import 'package:flutter/cupertino.dart';
 
 class ShareIdPopUp{
 
-  final String id;
+  final String sessionId;
 
-  ShareIdPopUp({@required this.id});
+  ShareIdPopUp({@required this.sessionId});
 
   main({@required BuildContext context}) async{
     return await CustomRichTextOkDialogBox(
         children: <TextSpan>[
           CustomText(text: TextConfig.shareThisCode,).richText(),
-          CustomText(text: id,textColor: primaryColor,).richText(),
+          CustomText(text: sessionId,textColor: primaryColor,).richText(),
         ],
         buttonText: TextConfig.ok,
         buttonOnPressed: (){
           /// send the user to whiteBoard screen:
           /// pop is a placeholder
           Map<String,dynamic> navigatorMap = new Map();
-          navigatorMap[TextConfig.id] = id;
+          navigatorMap[TextConfig.id] = sessionId;
+          navigatorMap[TextConfig.isDrawer] = true;
           Navigator.pushNamed(context, NavigatorConfig.whiteBoardUI,arguments: navigatorMap);
           }
     ).dialog(context);
