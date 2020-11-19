@@ -8,8 +8,9 @@ import 'package:flutter/cupertino.dart';
 class ShareIdPopUp{
 
   final String sessionId;
+  final String tokenId;
 
-  ShareIdPopUp({@required this.sessionId});
+  ShareIdPopUp({@required this.sessionId, this.tokenId});
 
   main({@required BuildContext context}) async{
     return await CustomRichTextOkDialogBox(
@@ -22,9 +23,9 @@ class ShareIdPopUp{
           /// send the user to whiteBoard screen:
           /// pop is a placeholder
           Map<String,dynamic> navigatorMap = new Map();
-          navigatorMap[TextConfig.id] = sessionId;
-          navigatorMap[TextConfig.isDrawer] = true;
-          Navigator.pushNamed(context, NavigatorConfig.whiteBoardUI,arguments: navigatorMap);
+          navigatorMap[TextConfig.sessionId] = sessionId;
+          navigatorMap[TextConfig.tokenId] = tokenId;
+          Navigator.pushNamed(context, NavigatorConfig.whiteBoardData,arguments: navigatorMap);
           }
     ).dialog(context);
   }

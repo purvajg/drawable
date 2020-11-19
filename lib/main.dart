@@ -2,7 +2,7 @@
 import 'package:drawable/home/ui/homeScreen.dart';
 import 'package:drawable/navigators/memberListDataRoute.dart';
 import 'package:drawable/navigators/memberListUIRoute.dart';
-import 'package:drawable/navigators/whiteBoardUIRoute.dart';
+import 'package:drawable/navigators/whiteBoardDataRoute.dart';
 import 'package:drawable/responsive/colorPallete.dart';
 import 'package:drawable/responsive/navigatorConfig.dart';
 import 'package:drawable/responsive/sizeConfig.dart';
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
                     ),
                     title: 'Drawable',
                     routes: {
-                      NavigatorConfig.whiteBoardUI : (context){return WhiteBoardUIRoute.main(context);},
+                      NavigatorConfig.whiteBoardData : (context){return WhiteBoardDataRoute.main(context);},
                       NavigatorConfig.memberListUI : (context){return MemberListUIRoute.main(context);},
                       NavigatorConfig.memberListData : (context){return MemberListDataRoute.main(context);},
                     },
