@@ -30,7 +30,9 @@ dependencies:
   flutter_svg: ^0.19.1 # latest is 0.19.1, but it has conflicts with with whiteBoardKit
   google_fonts: ^0.5.0+1
   cloud_firestore: ^0.13.7
-  whiteboardkit: ^0.2.1
+  #whiteboardkit: ^0.2.1
+  whiteboardkit:
+    git: https://github.com/purvajg/whiteboardkit.git
 
 dependency_overrides:
   xml: ^4.2.0

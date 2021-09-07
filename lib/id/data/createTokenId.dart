@@ -8,7 +8,7 @@ class CreateTokenId{
     /// if the user is the creator, then there wont be any memberlist
     /// and the map of members would be null
     if(nameTokenMap == null) return 1;
-    int length = nameTokenMap.length;
+    int length = nameTokenMap.length+1;
     return length;
   }
 

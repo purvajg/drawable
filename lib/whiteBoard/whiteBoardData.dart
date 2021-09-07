@@ -5,6 +5,9 @@ import 'package:drawable/whiteBoard/whiteBoardUI.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:whiteboardkit/draw_chunk.dart';
+import 'package:whiteboardkit/sketch_stream_controller.dart';
+
+import 'whiteBoardUI.dart';
 
 class WhiteBoardData extends StatelessWidget {
   final String sessionId;
@@ -12,8 +15,13 @@ class WhiteBoardData extends StatelessWidget {
 
   WhiteBoardData({@required this.sessionId, this.tokenId});
 
+  Set<int> set = new Set();
+  SketchStreamController sketchStreamController = new SketchStreamController();
+
+
   @override
   Widget build(BuildContext context) {
+
     return StreamBuilder(
       stream: Sessions().getSessionsStream(sessionId: sessionId),
       builder: (context, snapshot) {
@@ -28,32 +36,24 @@ class WhiteBoardData extends StatelessWidget {
           if(drawerTokenId == tokenId) isDrawer = true;
 
           List<dynamic> drawingChunkList = map[TextConfig.chunk];
-//          List<DrawChunk> drawingChunk = drawingChunkJson
 
-          return FutureBuilder(
-            future: Sessions().getDrawChunkListLength(sessionId: sessionId),
-            builder: (BuildContext context, AsyncSnapshot newDrawChunkSnapshot) {
-              if (newDrawChunkSnapshot.connectionState == ConnectionState.done) {
+          if(!isDrawer && drawingChunkList != null){
+            DrawChunk newDrawChunk;
+            drawingChunkList.forEach((element) {
+              Map<String, dynamic> drawChunkToJsonMap = element;
+              newDrawChunk = DrawChunk.fromJson(drawChunkToJsonMap);
+              if(set.contains(newDrawChunk.id) == false){
+                sketchStreamController.addChunk(newDrawChunk);
+                set.add(newDrawChunk.id);
+              }
+            });
+          }
 
-                print("newIndex : ${newDrawChunkSnapshot}");
-                print("newIndex : ${newDrawChunkSnapshot.data}");
-                int newIndex = newDrawChunkSnapshot.data;
-
-                Map<String, dynamic> drawChunkToJsonMap = drawingChunkList[newIndex-1];
-
-                DrawChunk newDrawChunk = DrawChunk.fromJson(drawChunkToJsonMap);
-
-                return WhiteBoardUI(
+          return WhiteBoardUI(
                   sessionId: sessionId,
                   isDrawer: isDrawer,
-                  drawingChunkStream: newDrawChunk,
+                  sketchStreamController: sketchStreamController,
                 );
-              }
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          );
         }return Center(child: CircularProgressIndicator());
       }
     );

@@ -14,9 +14,9 @@ import 'package:whiteboardkit/whiteboardkit.dart';
 class WhiteBoardUI extends StatefulWidget {
   final String sessionId;
   final bool isDrawer;
-  final DrawChunk drawingChunkStream;
+  final SketchStreamController sketchStreamController;
 
-  WhiteBoardUI({@required this.sessionId, @required this.isDrawer, this.drawingChunkStream});
+  WhiteBoardUI({@required this.sessionId, @required this.isDrawer, this.sketchStreamController});
 
   @override
   _WhiteBoardUIState createState() => _WhiteBoardUIState();
@@ -25,12 +25,10 @@ class WhiteBoardUI extends StatefulWidget {
 class _WhiteBoardUIState extends State<WhiteBoardUI> {
 
   DrawingController controller;
-  SketchStreamController sketchStreamController;
 
   @override
   void initState() {
     controller = new DrawingController(enableChunk: true);
-    sketchStreamController = new SketchStreamController();
 
 
     /// for drawer:
@@ -39,12 +37,6 @@ class _WhiteBoardUIState extends State<WhiteBoardUI> {
         /// for drawer : push the chunk to firebase
         Sessions().pushDrawingData(chunk: drawChunk, sessionId: widget.sessionId);
       });
-    }
-
-    /// for viewer
-    /// use data provided by streambuilder from whiteBoardData class:
-    else{
-    sketchStreamController.addChunk(widget.drawingChunkStream);
     }
 
     super.initState();
@@ -80,7 +72,7 @@ class _WhiteBoardUIState extends State<WhiteBoardUI> {
           children: [
             Expanded(
               child: Whiteboard(
-              controller: widget.isDrawer == true ? controller : sketchStreamController,
+              controller: widget.isDrawer == true ? controller : widget.sketchStreamController,
               ),
             )
           ],

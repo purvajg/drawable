@@ -388,10 +388,12 @@ packages:
   whiteboardkit:
     dependency: "direct main"
     description:
-      name: whiteboardkit
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.2"
+      path: "."
+      ref: HEAD
+      resolved-ref: "87543c0ecc445c1dfcadaef8ab2f1793b504d248"
+      url: "https://github.com/purvajg/whiteboardkit.git"
+    source: git
+    version: "0.2.1"
   win32:
     dependency: transitive
     description:
